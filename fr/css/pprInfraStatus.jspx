@@ -1,0 +1,407 @@
+<jsp:root jsfc="f:view" xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:strateg="www.evision.ca/component"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ice:outputDeclaration doctypeRoot="html"
+		doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN"
+		doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" />
+
+	<ui:composition template="/WEB-INF/jsp/templates/template.jspx"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
+		<ui:define name="page-title">
+			<ice:outputText value="#{infrastrutureStatusBean.titleMessage}"></ice:outputText>
+
+
+		</ui:define>
+		<ui:define name="synopsis">
+			<ice:panelGroup styleClass="synopsisBox">
+										<ice:outputText escape="false"
+											value="#{msg['cams.institutionportal.ppr.p2.help']}"></ice:outputText>
+									</ice:panelGroup>
+		</ui:define>
+		
+		<ui:define name="page-content">
+			<f:view>
+				<ice:form id="pprInfra">
+					<ice:panelGroup styleClass="globalPanelGroup">
+					
+					<ice:panelGroup  styleClass="internalPanelGroup_container">
+			<ice:panelGroup styleClass="internalPanelGroup">
+
+               
+				<ice:panelGroup styleClass="sectionPanelGroup">
+				    <div>
+				    
+				    <table width="100%">
+				      
+				       <tr>
+				          <td><b><ice:outputText value="#{msg['cams.institutionportal.ppr.p2.s1.infrastructurestatus.label']}"></ice:outputText></b>
+											
+												<ice:selectOneMenu partialSubmit="true" valueChangeListener="#{infrastrutureStatusBean.infrastructureStatusTypeChanged}"
+															value="#{infrastrutureStatusBean.selectedStatus}" styleClass="valueHolder">
+															<f:selectItems value="#{infrastrutureStatusBean.statusList}"/>
+														</ice:selectOneMenu></td>  
+				       </tr>
+				    </table>
+				    
+				    </div>
+				
+				</ice:panelGroup>
+			</ice:panelGroup>
+		</ice:panelGroup>
+						<ice:panelGroup styleClass="internalPanelGroup_container">
+							<ice:panelGroup styleClass="internalPanelGroup">
+								<ice:panelGroup styleClass="sectionPanelGroup">
+								<table width="100%" style="margin-top: 10px;">
+										<tr>
+											<td></td>
+											<td align="right"><ice:setEventPhase
+													events="ValueChangeEvent" phase="INVOKE_APPLICATION">
+													<ice:selectOneRadio id="pprPaginatorLayout1"
+														rendered="#{infrastrutureStatusBean.paginators.sizeOfResult>0}"
+														valueChangeListener="#{infrastrutureStatusBean.paginators.changeShowMode}"
+														value="#{infrastrutureStatusBean.paginators.showMode1}"
+														partialSubmit="true">
+														<f:selectItem itemValue="1"
+															itemLabel="#{msg['globals.radiobutton.showall.label']}" />
+
+														<f:selectItem itemValue="2"
+															itemLabel="#{msg['globals.radiobutton.showpages.label']}" />
+
+													</ice:selectOneRadio>
+												</ice:setEventPhase></td>
+										</tr>
+										<tr>
+											<td align="left"><ice:outputFormat escape="false"
+													value="#{msg['globals.message.paginatorMessage1.message'] }">
+													<f:param
+														value="#{infrastrutureStatusBean.paginators.sizeOfResult}"></f:param>
+												</ice:outputFormat> <ice:outputFormat
+													rendered="#{infrastrutureStatusBean.paginators.sizeOfResult>infrastrutureStatusBean.paginators.rowsNumber}"
+													escape="false"
+													value="#{msg['globals.message.paginatorMessage2.message']}">
+													<f:param
+														value="#{infrastrutureStatusBean.paginators.lastCountRow}"></f:param>
+												</ice:outputFormat></td>
+											<td align="right"><ice:panelGroup
+													rendered="#{infrastrutureStatusBean.paginators.showMode1=='2'}">
+													<ice:dataPaginator id="pprdataTablePaginator1"
+														for="pprResultId"
+														binding="#{infrastrutureStatusBean.paginators.dataPaginatorBinding1}"
+														rowsCountVar="rowsCountVar"
+														lastRowIndexVar="lastRowIndexVar" 
+                                                                                                                paginator="true"
+														fastStep="3" 
+                                                                                                                paginatorMaxPages="4" 
+                                                                                                                styleClass="scroller"
+														renderFacetsIfSinglePage="false"
+														actionListener="#{infrastrutureStatusBean.paginators.paginatorActionListener}">
+
+
+														<f:facet name="first">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-first.gif"
+																title="#{msg['globals.dataTable.paginator.firstPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="last">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-last.gif"
+																title="#{msg['globals.dataTable.paginator.lastPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="previous">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-previous.gif"
+																title="#{msg['globals.dataTable.paginator.previousPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="next">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-next.gif"
+																title="#{msg['globals.dataTable.paginator.nextPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="fastforward">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-ff.gif"
+																title="#{msg['globals.dataTable.paginator.fastForward.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="fastrewind">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-fr.gif"
+																title="#{msg['globals.dataTable.paginator.fastBackward.label']}"></ice:graphicImage>
+														</f:facet>
+													</ice:dataPaginator>
+												</ice:panelGroup></td>
+										</tr>
+									</table>
+
+									<ice:dataTable styleClass="dashBoardDataTable" id="pprResultId"
+										width="99%" style="float:left" cellpadding="0"
+										rows="#{infrastrutureStatusBean.paginators.rowsNumber}"
+                                                                                first="#{infrastrutureStatusBean.paginators.first}"
+										value="#{infrastrutureStatusBean.list}" var="item">
+										<!-- prjProjectId -->
+										<ice:column style="text-align:center">
+											<f:facet name="header">
+											<ice:commandLink actionListener="#{infrastrutureStatusBean.sort1}">
+												<ice:outputText
+													value="#{msg['cams.institutionportal.ppr.p2.s1.projectnumberheader.label']}" />
+												<ui:fragment rendered="#{infrastrutureStatusBean.referenceTableSortedColumn=='1'}"> 
+												
+													<ice:graphicImage style="border:none;" value="/css/css-images/column_sort_#{infrastrutureStatusBean.sortType=='desc'?'desc':'asc'}.gif"/>
+												</ui:fragment>
+												<f:attribute name="sortColomn" value="1"/>
+                                 			</ice:commandLink>
+												
+											</f:facet>
+											<ice:outputText value="#{item.entity.prjProjectId}"></ice:outputText>
+										</ice:column>
+
+										<!-- fndFundDescription -->
+										<ice:column>
+											<f:facet name="header">
+												
+											<ice:commandLink actionListener="#{infrastrutureStatusBean.sort1}">
+												<ice:outputText
+													value="#{msg['cams.institutionportal.ppr.p2.s1.fundabbheader.label']}" />
+												<ui:fragment rendered="#{infrastrutureStatusBean.referenceTableSortedColumn=='2'}"> 
+												
+													<ice:graphicImage style="border:none;" value="/css/css-images/column_sort_#{infrastrutureStatusBean.sortType=='desc'?'desc':'asc'}.gif"/>
+												</ui:fragment>
+												<f:attribute name="sortColomn" value="2"/>
+                                 			</ice:commandLink>
+											</f:facet>
+											<ice:outputText
+												value="#{strateg:getDescription(item.entity.abbreviationEn,item.entity.abbreviationFr)}"></ice:outputText>
+										</ice:column>
+
+										<!-- project leader name -->
+										<ice:column style="text-align:left">
+
+											<f:facet name="header">
+												
+											<ice:commandLink actionListener="#{infrastrutureStatusBean.sort1}">
+												<ice:outputText
+													value="#{msg['cams.institutionportal.ppr.p2.s1.projectleaderheader.label']}"></ice:outputText>
+												<ui:fragment rendered="#{infrastrutureStatusBean.referenceTableSortedColumn=='3'}"> 
+												
+													<ice:graphicImage style="border:none;" value="/css/css-images/column_sort_#{infrastrutureStatusBean.sortType=='desc'?'desc':'asc'}.gif"/>
+												</ui:fragment>
+												<f:attribute name="sortColomn" value="3"/>
+                                 			</ice:commandLink>
+											</f:facet>
+
+											<ice:outputText value="#{item.entity.projectLeaderName}"></ice:outputText>
+										</ice:column>
+
+										<!-- project title -->
+										<ice:column style="text-align:left">
+											<f:facet name="header">
+												
+											<ice:commandLink actionListener="#{infrastrutureStatusBean.sort1}">
+												<ice:outputText
+													value="#{msg['cams.institutionportal.ppr.p2.s1.projecttitleheader.label']}"></ice:outputText>
+												<ui:fragment rendered="#{infrastrutureStatusBean.referenceTableSortedColumn=='4'}"> 
+												
+													<ice:graphicImage style="border:none;" value="/css/css-images/column_sort_#{infrastrutureStatusBean.sortType=='desc'?'desc':'asc'}.gif"/>
+												</ui:fragment>
+												<f:attribute name="sortColomn" value="4"/>
+                                 			</ice:commandLink>
+											</f:facet>
+											<ice:outputText title="#{item.entity.projectTitle}" value="#{item.projectTitle}"></ice:outputText>
+										</ice:column>
+
+
+										<!-- infra operational header -->
+										<ice:column>
+											<f:facet name="header">
+											<ice:outputText 
+													value="#{msg['cams.institutionportal.ppr.p2.s1.infoperationalheader.label']}"></ice:outputText>
+											</f:facet>
+											<ice:setEventPhase events="ValueChangeEvent" phase="INVOKE_APPLICATION">
+											<ice:panelGroup rendered="#{item.entity.prjCurrentStatusId != 8 and item.showRadioButton and accessPrivilege['cams.institutionportal.ppr.p2.s1.infoperationalheader'] }">
+													<div id="qId_#{item.entity.prjProjectId}" style="white-space: nowrap;">
+													<input type="radio" value="3"
+															name="radio_op_#{item.entity.prjProjectId}"
+															onmousedown="CAMS.customRadio[#{item.entity.prjProjectId}] = jQuery('#qId_#{item.entity.prjProjectId} .valueHolder').val();"
+															onclick="if(CAMS.questionConfirm(this,CAMS.customRadio[#{item.entity.prjProjectId}],this.value,#{item.entity.prjProjectId},'#{infrastrutureStatusBean.yesConfirm}')){jQuery('#qId_#{item.entity.prjProjectId} .valueHolder').val('3')}else{};"></input>
+														<label style="margin-left: 3px;">#{msg['cams.institutionportal.ppr.p2.s1.yes.label']}</label>&amp;nbsp;&amp;nbsp;
+                        							<input type="radio" value="2"
+															name="radio_op_#{item.entity.prjProjectId}"
+															onmousedown="CAMS.customRadio[#{item.entity.prjProjectId}] = jQuery('#qId_#{item.entity.prjProjectId} .valueHolder').val();"
+															onclick="if(CAMS.questionConfirm(this,CAMS.customRadio[#{item.entity.prjProjectId}],this.value,#{item.entity.prjProjectId},'#{infrastrutureStatusBean.noConfirm}')){jQuery('#qId_#{item.entity.prjProjectId} .valueHolder').val('2')}else{};"></input>
+														<label style="margin-left: 3px;">#{msg['cams.institutionportal.ppr.p2.s1.no.label']}</label>&amp;nbsp;&amp;nbsp;
+													<ice:selectOneMenu style="display: none;" valueChangeListener="#{item.saveInfrastructureStatus}"
+														value="#{item.entity.pprInfraStatusTypeId}" styleClass="valueHolder">
+														<f:selectItem
+															itemLabel="NULL"
+															itemValue="-1" />
+														<f:selectItem
+															itemLabel="YES"
+															itemValue="3" />
+														<f:selectItem
+															itemLabel="NO"
+															itemValue="2" />
+													</ice:selectOneMenu>
+													</div>
+													<script>
+													jQuery("document").ready(function(){
+													//alert("#qId_#{item.entity.prjProjectId} :input[type='radio'][value='"+jQuery("#qId_#{item.entity.prjProjectId} .valueHolder").val()+"']");
+														jQuery("#qId_#{item.entity.prjProjectId} :input[type='radio'][value='"+jQuery("#qId_#{item.entity.prjProjectId} .valueHolder").val()+"']").attr("checked",true);
+														//alert("salam");
+														//alert("#qId_#{item.entity.prjProjectId} :input[type='radio'][value='"+jQuery("#qId_#{item.entity.prjProjectId} .valueHolder").val()+"']");
+														Ice.onAsynchronousReceive('document:body', function() {
+							                             	jQuery("#qId_#{item.entity.prjProjectId} :input[type='radio'][value='"+jQuery("#qId_#{item.entity.prjProjectId} .valueHolder").val()+"']").attr("checked",true);
+									                    }); 
+													})
+													</script>
+												</ice:panelGroup>
+                                                                                        </ice:setEventPhase>
+                                                                                                        
+                                                 <ice:outputText rendered="#{item.entity.prjCurrentStatusId != 8 and  not item.showRadioButton and item.entity.pprInfraStatusTypeId != 3 and item.ffrSubmitted }"
+												value="#{msg['cams.researcherportal.dashboard.p1.s7.operationalFFRvalidated.label']}"></ice:outputText>                                                        
+                                                <ice:outputText rendered="#{item.entity.prjCurrentStatusId != 8 and (not item.showRadioButton and not item.emtyStatus and !( item.entity.pprInfraStatusTypeId == 2 and item.ffrSubmitted ))}"
+												value="#{strateg:getDescription(item.entity.infrastructureOperationalEn,item.entity.infrastructureOperationalFr)}"></ice:outputText>
+                                                <ice:outputText rendered="#{item.entity.prjCurrentStatusId != 8 and  item.afterDeadLine and empty item.entity.infrastructureOperationalEn }"
+												value="#{msg['cams.institutionportal.ppr.p2.s1.notsubmitted.label']}"></ice:outputText>
+                                                <ice:outputText rendered="#{item.entity.prjCurrentStatusId == 8}"
+												value="#{msg['globals.message.withdrawn.label']}"></ice:outputText>
+												
+										</ice:column>
+										<!-- deadline header -->
+										<ice:column>
+											<f:facet name="header">
+											<ice:commandLink actionListener="#{infrastrutureStatusBean.sort1}">
+												<ice:outputText
+													value="#{msg['cams.institutionportal.ppr.p2.s1.deadlineheader.label']}"></ice:outputText>
+												<ui:fragment rendered="#{infrastrutureStatusBean.referenceTableSortedColumn=='6'}"> 
+												
+													<ice:graphicImage style="border:none;" value="/css/css-images/column_sort_#{infrastrutureStatusBean.sortType=='desc'?'desc':'asc'}.gif"/>
+												</ui:fragment>
+												<f:attribute name="sortColomn" value="6"/>
+                                 			</ice:commandLink>
+											</f:facet>
+											<ice:outputText  rendered="#{item.entity.prjCurrentStatusId != 8}" style="white-space:nowrap;" value="#{item.deadline}"></ice:outputText>
+                                                                                        <ice:outputText  rendered="#{item.entity.prjCurrentStatusId == 8}" style="white-space:nowrap;" value="#{msg['globals.message.notApplicable.label']}"></ice:outputText>
+										</ice:column>
+										<!-- date sub header -->
+										<ice:column>
+											<f:facet name="header">
+												
+											<ice:commandLink actionListener="#{infrastrutureStatusBean.sort1}">
+												<ice:outputText
+													value="#{msg['cams.institutionportal.ppr.p2.s1.datesubheader.label']}"></ice:outputText>
+												<ui:fragment rendered="#{infrastrutureStatusBean.referenceTableSortedColumn=='7'}"> 
+												
+													<ice:graphicImage style="border:none;" value="/css/css-images/column_sort_#{infrastrutureStatusBean.sortType=='desc'?'desc':'asc'}.gif"/>
+												</ui:fragment>
+												<f:attribute name="sortColomn" value="7"/>
+                                 			</ice:commandLink>
+											</f:facet>
+											<ice:outputText style="white-space:nowrap;" rendered="#{not empty item.submissionDate}" value="#{item.submissionDate}"></ice:outputText>
+											<ice:outputText rendered="#{empty item.submissionDate}" value="#{msg['cams.institutionportal.ppr.p2.s1.n/a.label']}"></ice:outputText>
+											
+										</ice:column>
+
+									</ice:dataTable>
+
+
+									<table width="100%" style="margin-top: 10px;">
+
+										<tr>
+											<td align="left"><ice:outputFormat escape="false"
+													value="#{msg['globals.message.paginatorMessage1.message'] }">
+													<f:param
+														value="#{infrastrutureStatusBean.paginators.sizeOfResult}"></f:param>
+												</ice:outputFormat> <ice:outputFormat
+													rendered="#{infrastrutureStatusBean.paginators.sizeOfResult>infrastrutureStatusBean.paginators.rowsNumber}"
+													escape="false"
+													value="#{msg['globals.message.paginatorMessage2.message']}">
+													<f:param
+														value="#{infrastrutureStatusBean.paginators.lastCountRow}"></f:param>
+												</ice:outputFormat></td>
+											<td align="right"><ice:panelGroup
+													rendered="#{ infrastrutureStatusBean.paginators.showMode1=='2'}">
+													<ice:dataPaginator id="pprdataTablePaginator2"
+														for="pprResultId"
+														binding="#{infrastrutureStatusBean.paginators.dataPaginatorBinding2}"
+														rowsCountVar="rowsCountVar"
+														lastRowIndexVar="lastRowIndexVar" paginator="true"
+														fastStep="3" paginatorMaxPages="4" styleClass="scroller"
+														renderFacetsIfSinglePage="false"
+														actionListener="#{infrastrutureStatusBean.paginators.paginatorActionListener}">
+
+
+														<f:facet name="first">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-first.gif"
+																title="#{msg['globals.dataTable.paginator.firstPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="last">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-last.gif"
+																title="#{msg['globals.dataTable.paginator.lastPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="previous">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-previous.gif"
+																title="#{msg['globals.dataTable.paginator.previousPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="next">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-next.gif"
+																title="#{msg['globals.dataTable.paginator.nextPage.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="fastforward">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-ff.gif"
+																title="#{msg['globals.dataTable.paginator.fastForward.label']}"></ice:graphicImage>
+														</f:facet>
+														<f:facet name="fastrewind">
+															<ice:graphicImage style="border:none;"
+																url="/css/css-images/arrow-fr.gif"
+																title="#{msg['globals.dataTable.paginator.fastBackward.label']}"></ice:graphicImage>
+														</f:facet>
+													</ice:dataPaginator>
+												</ice:panelGroup></td>
+										</tr>
+
+										<tr>
+											<td></td>
+											<td align="right"><ice:setEventPhase
+													events="ValueChangeEvent" phase="INVOKE_APPLICATION">
+													<ice:selectOneRadio id="pprPaginatorLayout2"
+														rendered="#{infrastrutureStatusBean.paginators.sizeOfResult>0}"
+														valueChangeListener="#{infrastrutureStatusBean.paginators.changeShowMode}"
+														value="#{infrastrutureStatusBean.paginators.showMode1}"
+														partialSubmit="true">
+														<f:selectItem itemValue="1"
+															itemLabel="#{msg['globals.radiobutton.showall.label']}" />
+
+														<f:selectItem itemValue="2"
+															itemLabel="#{msg['globals.radiobutton.showpages.label']}" />
+
+													</ice:selectOneRadio>
+												</ice:setEventPhase></td>
+										</tr>
+
+									</table>
+
+
+
+
+								</ice:panelGroup>
+							</ice:panelGroup>
+						</ice:panelGroup>
+					</ice:panelGroup>
+				</ice:form>
+			</f:view>
+		</ui:define>
+
+	</ui:composition>
+</jsp:root>
