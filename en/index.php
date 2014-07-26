@@ -67,11 +67,11 @@
 							<a class="navbar-brand" href="index-fullscreen.html" style="padding-top:20px;"><img src="images/main-logo.png?v_res_jmeagh=0.1" alt="Ashley website template" style="height:50px;"></a> </div>
 							<div class="collapse navbar-collapse navbar-ex1-collapse" id="scrollTarget">
 								<ul class="nav navbar-nav pull-right">
-									<li class="active"><a href="#homeFullScreen"><i class="icon-home-outline"></i>Home</a> </li>
+									<li class="active"><a href=""><i class="icon-home-outline"></i>Home</a> </li>
 									<li><a href="#about"><i class="icon-star"></i>About</a> </li>
-									<li><a href="#services"><i class="icon-thumbs-up"></i>Program</a> </li>
-									<li><a href="#works"><i class="icon-popup-1"></i>JMaghrebians</a> </li>
-									<li><a href="#team"><i class="icon-users"></i>Sponsors</a> </li>
+									<li><a href="#program"><i class="icon-thumbs-up"></i>Program</a> </li>
+									<li><a href="#team"><i class="icon-popup-1"></i>JMaghrebians</a> </li>
+									<li><a href="#sponsors"><i class="icon-users"></i>Sponsors</a> </li>
 									<li><a href="#contactSlice"><i class="icon-mail"></i>Contact</a> </li>
                                     <li><a href="../fr"><i class="icon-arrows-cw-outline"></i>Français</a> </li>
 								</ul>
@@ -143,7 +143,7 @@ From its first edition, JMaghreb provided a high quality content delivered by to
 				<!-- about us -->
 
 				<!-- services -->
-				<section class="slice color4" id="services">
+				<section class="slice color4" id="program">
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12">
@@ -209,7 +209,7 @@ From its first edition, JMaghreb provided a high quality content delivered by to
 					</div>
 				</div>
 
-				<section class="slice" id="works">
+				<section class="slice" id="team">
 					<div class="container clearfix">
 						<div class="row">
 							<div class="col-sm-12">
@@ -221,7 +221,6 @@ From its first edition, JMaghreb provided a high quality content delivered by to
 									<li><a href="" class="current btn btn-sm" data-filter="*">All</a></li>
 									<li><a href=""  class="btn btn-sm" data-filter=".team" >The team</a></li>
 									<li ><a href="" class="btn btn-sm" data-filter=".rev">Reviewers</a></li>
-                                    <li><a href=""  class="btn btn-sm" data-filter=".speaker">Speakers</a></li>
 								</ul>
 							</nav>
 
@@ -419,7 +418,7 @@ From its first edition, JMaghreb provided a high quality content delivered by to
 							</div>
 						</div>
 					</div>
-					<section class="slice" id="team">
+					<section class="slice" id="sponsors">
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
@@ -467,6 +466,11 @@ From its first edition, JMaghreb provided a high quality content delivered by to
 								
 							</div>
 						</div>
+						<div class="col-xs-12">
+									
+									<h2 class="subTitle"> <a href= "./partners-friends.html">See our Partners</a></h2>
+								</div>
+							</div>
 					</section>
 
 					<div id="paralaxSlice4" data-stellar-background-ratio="0.5" >
@@ -526,10 +530,11 @@ From its first edition, JMaghreb provided a high quality content delivered by to
 												<li><a href="https://www.facebook.com/JMaghrebConf" target="_blank" class="tips" title="follow me on Facebook"><i class="icon-facebook-1 iconRounded"></i></a></li>
 												<li><a href="https://twitter.com/JMaghrebConf" target="_blank" class="tips" title="follow me on Twitter" target="_blank"><i class="icon-twitter-bird iconRounded"></i></a></li>
 												<li><a href="https://plus.google.com/107325370922477078379/" target="_blank" class="tips" title="follow me on Google+"><i class="icon-gplus-1 iconRounded"></i></a></li>
-												<li><a href="http://www.linkedin.com/groups/JMaghreb-7486767?home=&gid=7486767&trk=anet_ug_hm" target="_blank" class="tips" title="follow me on Linkedin"><i class="icon-linkedin-1 iconRounded"></i></a></li>
-												
-											</ul>   
-											
+												<li><a href="http://www.linkedin.com/groups/JMaghreb-7486767?home=&gid=7486767&trk=anet_ug_hm" target="_blank" class="tips" title="follow me on Linkedin">
+												<li><a href="http://instagram.com/jmaghreb" target="_blank" class="tips" title="follow me on Instagram"><i class="icon-camera iconRounded"></i></a></li>
+												<li><a href="https://www.youtube.com/user/JMaghreb" target="_blank" class="tips" title="follow me on Youtube"><i class="icon-youtube iconRounded"></i></a></li>
+												<li><a href="https://www.flickr.com/photos/121912191@N02/" target="_blank" class="tips" title="follow me on Flickr"><i class="icon-flickr iconRounded"></i></a></li>
+											</ul>  
 										</div>
 									</div>
 

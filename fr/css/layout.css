@@ -29,6 +29,7 @@ Description: layout styles
 
 /* BOOSTRAP CUSTOMIZATION
 ================================================== */
+.centered{margin: 0 auto;}
 .navbar {margin-bottom:0;}
 .navbar-default {background:none; border:none;}
 .nav.nav-tabs {margin-bottom:22px;}
